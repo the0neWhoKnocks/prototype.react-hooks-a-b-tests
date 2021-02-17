@@ -2,6 +2,7 @@
 *.log
 *.patch
 *.zip
+.DS_Store
 
 # Folders
 .git

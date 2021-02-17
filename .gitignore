@@ -1,0 +1,10 @@
+# Files
+*.log
+*.patch
+*.zip
+
+# Folders
+.git
+.ignore
+dist
+node_modules

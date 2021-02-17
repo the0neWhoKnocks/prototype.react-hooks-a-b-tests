@@ -1,0 +1,15 @@
+{
+  "activeTests": [
+    "test001"
+  ],
+  "tests": {
+    "test001": {
+      "variant": "A",
+      "variants": [
+        "A", 
+        "B", 
+        "Control"
+      ]
+    }
+  }
+}

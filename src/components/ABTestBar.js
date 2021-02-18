@@ -1,17 +1,20 @@
 import React, { useContext, useState } from 'react';
 import { css } from 'emotion';
-import ABTestToggle from './ABTestToggle';
+import ABTestToggle, { ROOT_CLASS as TOGGLE_ROOT_CLASS } from './ABTestToggle';
 import abTestCtx from './ABTestContext';
 
 const MODIFIER__BAR_OPENED = 'is--opened';
-const ROOT_CLASS='ab-test-bar';
+const ROOT_CLASS = 'ab-test-bar';
 const styles = css`
+  font-size: 1.5em;
   padding: 1em;
-  border-top: solid 1px #333;
+  border: solid 2px #333;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0.5em 0 0 0;
   background: #ccc;
   position: absolute;
   bottom: 0;
-  left: 0;
   right: 0;
   transform: translateY(100%);
   transition: transform 200ms;
@@ -23,19 +26,25 @@ const styles = css`
   .${ROOT_CLASS} {
 
     &__toggle-btn {
-      border: solid 1px #333;
+      font-size: inherit;
+      padding: 0.25em 0.5em;
+      border: solid 2px #333;
       border-bottom: none;
+      border-radius: 0.5em 0.5em 0em 0em;
+      outline: none;
       background: #ccc;
       position: absolute;
       bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
+      right: 0;
     }
+  }
+  
+  .${TOGGLE_ROOT_CLASS}:not(:first-child) {
+    margin-top: 1em;
   }
 `;
 
 export default function ABTestBar() {
-  const ctx = useContext(abTestCtx);
   const {
     activeTests,
     actions: {
@@ -44,7 +53,7 @@ export default function ABTestBar() {
       getVariants,
       setActiveVariant,
     },
-  } = ctx;
+  } = useContext(abTestCtx);
   const [barOpened, setBarOpened] = useState(true);
 
   const handleToggleClick = (ev) => {
@@ -56,12 +65,10 @@ export default function ABTestBar() {
     setBarOpened(!barOpened);
   }
 
-  const logData = [];
   const toggles = activeTests
     .filter((t) => !!getTests()[t])
     .map((t) => {
       const activeVariant = getActiveVariant(t);
-      logData.push({ 'Active Test': t,  Variant: activeVariant });
       return (
         <ABTestToggle
           key={t}
@@ -71,7 +78,6 @@ export default function ABTestBar() {
         />
       );
     });
-  console.table(logData);
 
   const navModifier = barOpened ? MODIFIER__BAR_OPENED : '';
 

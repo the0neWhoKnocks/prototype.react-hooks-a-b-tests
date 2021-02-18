@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { css } from 'emotion';
 import { arrayOf, string } from 'prop-types';
 
-const ROOT_CLASS='ab-test-toggle';
+export const ROOT_CLASS = 'ab-test-toggle';
 const styles = css`
   .${ROOT_CLASS} {
 

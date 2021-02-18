@@ -1,0 +1,23 @@
+{
+  "activeTests": [
+    "test001",
+    "test002"
+  ],
+  "tests": {
+    "test001": {
+      "variant": "A",
+      "variants": [
+        "Control",
+        "A",
+        "B"
+      ]
+    },
+    "test002": {
+      "variant": "Control",
+      "variants": [
+        "Control",
+        "A"
+      ]
+    }
+  }
+}
